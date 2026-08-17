@@ -4,9 +4,13 @@ A lightweight browser version of **Ô Ăn Quan (Mandarin Square Capturing)**, a 
 
 Built specifically to work well on **Kindle Paperwhite 10th Gen** and other simple E-Ink browsers.
 
+## Repository
+
+https://github.com/tuongphantrue/oanquan
+
 ## Play
 
-https://tuongphantrue.github.io/o-an-quan/
+https://tuongphantrue.github.io/oanquan/
 
 ## Features
 
@@ -54,25 +58,27 @@ You control the five pits on the **bottom** side of the board.
 
 ## GitHub Pages
 
-To host your own copy:
+This repository is intended to be published with GitHub Pages.
 
-1. Upload the project files to a public GitHub repository.
-2. Open **Settings → Pages**.
-3. Select **Deploy from a branch**.
-4. Choose your default branch (`main` or `master`).
-5. Choose **/(root)**.
-6. Save.
+Go to:
 
-Your game will then be available at:
+**Settings → Pages → Deploy from a branch**
+
+Choose:
 
 ```text
-https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/
+Branch: main (or master)
+Folder: / (root)
 ```
+
+The game will then be available at:
+
+https://tuongphantrue.github.io/oanquan/
 
 ## Project Files
 
 ```text
-o-an-quan/
+oanquan/
 ├── index.html
 ├── README.md
 ├── LICENSE
