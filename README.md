@@ -20,10 +20,11 @@ https://tuongphantrue.github.io/oanquan/
 - Undo
 - Clockwise and counter-clockwise moves
 - Pebbles are shown visually instead of as numbers
-- Large Mandarin stones
+- Moving hand animation that travels pit to pit
+- The hand picks up stones and drops them one by one
+- 2 seconds for each dropped pebble
 - Black-and-white / grayscale interface
 - Large touch targets for Kindle
-- No animations
 - No external libraries
 - No server or API required
 - Works entirely in the browser
@@ -46,12 +47,14 @@ You control the five pits on the **bottom** side of the board.
 
 1. Tap one of your non-empty pits.
 2. Choose **CLOCKWISE** or **COUNTER-CLOCKWISE**.
-3. The pebbles are distributed one by one around the board.
-4. If the next small pit contains pebbles, those pebbles are picked up and sowing continues.
-5. If sowing stops before an empty pit, you may capture the stones in the following pit.
-6. A **Quan** piece is worth 10 points.
-7. The game ends after both Quan pieces have been captured.
-8. The player with the highest score wins.
+3. The hand picks up the pebbles from that pit.
+4. The hand moves around the board and drops one pebble into each pit.
+5. Each dropped pebble is shown for 2 seconds so the move is easy to follow.
+6. If the next small pit contains pebbles, those pebbles are picked up and sowing continues.
+7. If sowing stops before an empty pit, you may capture the stones in the following pit.
+8. A **Quan** piece is worth 10 points.
+9. The game ends after both Quan pieces have been captured.
+10. The player with the highest score wins.
 
 > Ô Ăn Quan has several regional and household rule variations.  
 > This project uses a simple common-rule variant designed for easy browser play.
@@ -67,26 +70,5 @@ Go to:
 Choose:
 
 ```text
-Branch: main (or master)
+Branch: main
 Folder: / (root)
-```
-
-The game will then be available at:
-
-https://tuongphantrue.github.io/oanquan/
-
-## Project Files
-
-```text
-oanquan/
-├── index.html
-├── README.md
-├── LICENSE
-└── .nojekyll
-```
-
-## License
-
-MIT License.
-
-This implementation was created as a lightweight web version of the traditional Vietnamese game **Ô Ăn Quan**.
