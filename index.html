@@ -11,11 +11,11 @@ h1{margin:3px 0 0;font-size:30px;letter-spacing:2px}.sub{font-size:13px;margin:2
 #toolbar,#status,#movePanel{border:2px solid #000;padding:7px;margin:6px 0}
 #toolbar select,#toolbar input,.btn{font-size:14px;margin:2px;padding:7px;background:#fff;color:#000;border:2px solid #000}
 #status{min-height:24px;font-size:17px;font-weight:bold}
-#capturedWrap{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0 10px}
-#capturedWrap .tray{border:1px solid #000;padding:5px;background:#f3f3f3;text-align:left}
-#capturedWrap .trayTitle{font-size:12px;font-weight:bold;margin-bottom:4px}
-#capturedWrap .trayStones{min-height:34px;display:flex;flex-wrap:wrap;gap:4px;align-items:flex-start}
-#capturedWrap .scoreStone{display:inline-block;width:9px;height:7px;border:2px solid #000;border-radius:50%;background:#d9d9d9}
+.playerCaptured{border:1px solid #000;padding:6px;background:#f3f3f3;text-align:left;margin:8px 0}
+.playerCaptured .trayTitle{font-size:13px;font-weight:bold;margin-bottom:4px;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.trayCount{white-space:nowrap;font-size:15px}
+.playerCaptured .trayStones{min-height:34px;display:flex;flex-wrap:wrap;gap:4px;align-items:flex-start}
+.playerCaptured .scoreStone{display:inline-block;width:9px;height:7px;border:2px solid #000;border-radius:50%;background:#d9d9d9}
 #board{width:100%;table-layout:fixed;border-collapse:collapse;border:4px solid #000;margin-top:7px}
 .pit{border:2px solid #000;height:118px;vertical-align:top;text-align:center;background:#fff;cursor:pointer;padding:4px;box-sizing:border-box}
 .small{width:14%}.quan{width:15%;height:240px;border-left-width:4px;border-right-width:4px}
@@ -37,7 +37,7 @@ h1{margin:3px 0 0;font-size:30px;letter-spacing:2px}.sub{font-size:13px;margin:2
 #dropPebble{display:none}
 .handDropping #dropPebble{display:block}
 #selection{min-height:20px;margin-bottom:6px}.move{width:46%;min-height:48px;font-size:14px;font-weight:bold;background:#fff;color:#000;border:3px solid #000;margin:3px}.move[disabled]{border-style:dotted}
-@media screen and (max-width:650px){#page{padding:4px}h1{font-size:23px}.pit{height:98px}.quan{height:200px}.stone{width:10px;height:8px;border-width:2px}.quan .stone{width:11px;height:9px}.mandarin{width:26px;height:19px}.move{width:47%;font-size:12px}#toolbar select,#toolbar input{font-size:12px;padding:5px 3px}.stones{gap:3px;min-height:56px}.quan .stones{min-height:118px}#capturedWrap{grid-template-columns:1fr}#capturedWrap .trayTitle{font-size:11px}#capturedWrap .scoreStone{width:8px;height:6px}}
+@media screen and (max-width:650px){#page{padding:4px}h1{font-size:23px}.pit{height:98px}.quan{height:200px}.stone{width:10px;height:8px;border-width:2px}.quan .stone{width:11px;height:9px}.mandarin{width:26px;height:19px}.move{width:47%;font-size:12px}#toolbar select,#toolbar input{font-size:12px;padding:5px 3px}.stones{gap:3px;min-height:56px}.quan .stones{min-height:118px}.playerCaptured .trayTitle{font-size:12px}.playerCaptured .scoreStone{width:8px;height:6px}.trayCount{font-size:13px}}
 </style>
 </head>
 <body onload="initGame()">
@@ -52,7 +52,7 @@ h1{margin:3px 0 0;font-size:30px;letter-spacing:2px}.sub{font-size:13px;margin:2
 <input type="button" value="New Game" onclick="newGame()"><input type="button" value="Undo" onclick="undoMove()">
 </div>
 <div id="status">Loading...</div>
-<div id="capturedWrap"><div class="tray"><div class="trayTitle">Computer</div><div id="capturedTop" class="trayStones"></div></div><div class="tray"><div class="trayTitle">You</div><div id="capturedBottom" class="trayStones"></div></div></div>
+<div id="capturedTopSide" class="playerCaptured"><div class="trayTitle"><span>Computer</span></div><div id="capturedTop" class="trayStones"></div></div>
 <table id="board" cellspacing="0" cellpadding="0">
 <tr>
 <td id="pit0" class="pit quan" rowspan="2" onclick="pitClick(0)"><div id="stones0" class="stones"></div><div id="mandarin0" class="mandarin" aria-label="Mandarin stone"></div></td>
@@ -71,6 +71,7 @@ h1{margin:3px 0 0;font-size:30px;letter-spacing:2px}.sub{font-size:13px;margin:2
 <td id="pit7" class="pit small" onclick="pitClick(7)"><div id="stones7" class="stones"></div></td>
 </tr>
 </table>
+<div id="capturedBottomSide" class="playerCaptured"><div class="trayTitle"><span>You</span></div><div id="capturedBottom" class="trayStones"></div></div>
 <div id="movePanel"><div id="selection">Tap one of your five pits.</div><input id="ccwButton" class="move" type="button" value="COUNTER-CLOCKWISE" onclick="directionClick(-1)" disabled><input id="cwButton" class="move" type="button" value="CLOCKWISE" onclick="directionClick(1)" disabled></div>
 <div id="hand" class="handEmpty"><svg viewBox="0 0 90 68" aria-hidden="true"><g id="handOpen"><path class="handShade" d="M20 55 C14 55 10 50 10 44 V23 C10 19 13 16 17 16 C21 16 24 19 24 23 V15 C24 10 27 7 31 7 C35 7 38 10 38 15 V12 C38 8 41 5 45 5 C49 5 52 8 52 12 V15 C52 10 55 7 59 7 C63 7 66 10 66 15 V21 C66 17 69 14 73 14 C77 14 80 17 80 21 V39 C80 48 73 55 64 55 Z"></path><path class="handOutline" d="M20 55 C14 55 10 50 10 44 V23 C10 19 13 16 17 16 C21 16 24 19 24 23 V15 C24 10 27 7 31 7 C35 7 38 10 38 15 V12 C38 8 41 5 45 5 C49 5 52 8 52 12 V15 C52 10 55 7 59 7 C63 7 66 10 66 15 V21 C66 17 69 14 73 14 C77 14 80 17 80 21 V39 C80 48 73 55 64 55 Z"></path></g><g id="handClosed"><path class="handShade" d="M21 44 C21 34 28 27 39 24 L53 20 C61 18 69 21 74 27 C78 31 79 37 77 43 C74 51 66 56 57 57 L40 58 C29 58 22 53 21 44 Z"></path><path class="handOutline" d="M21 44 C21 34 28 27 39 24 L53 20 C61 18 69 21 74 27 C78 31 79 37 77 43 C74 51 66 56 57 57 L40 58 C29 58 22 53 21 44 Z"></path><path class="handOutline" d="M31 34 C36 31 42 29 48 28"></path><path class="handOutline" d="M29 41 C36 38 44 36 52 35"></path><path class="handOutline" d="M31 48 C39 45 48 43 57 42"></path><path class="handOutline" d="M58 26 C64 27 69 30 72 35"></path><circle id="dropPebble" class="carryPebble" cx="70" cy="49" r="4"></circle></g></svg></div>
 </div>
