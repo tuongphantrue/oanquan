@@ -61,6 +61,13 @@ body{-webkit-text-size-adjust:100%}
 .handHolding #handClosed,.handDropping #handClosed{display:block}
 .carryPebble{fill:#d6a02c;stroke:#9a711f;stroke-width:1.5;display:none}
 #dropPebble{display:none}.handDropping #dropPebble{display:block}
+/* Visible sỏi carried in the closed hand. One pebble disappears after every drop. */
+#handCarry{position:absolute;left:-10px;width:96px;bottom:41px;z-index:35;text-align:center;line-height:8px;display:none;pointer-events:none}
+.handHolding #handCarry,.handDropping #handCarry,.handPicking #handCarry{display:block}
+.handCarryStone{display:inline-block;width:9px;height:7px;margin:0 1px 1px;background:#d6a02c;background:radial-gradient(circle at 35% 30%,#f3cf69 0%,#dda932 58%,#b9841f 100%);border:1px solid #9a711f;border-radius:58% 42% 54% 46%;vertical-align:middle}
+.handCarryStone.c2{width:8px;height:6px;border-radius:45% 55% 48% 52%;transform:rotate(-8deg)}
+.handCarryStone.c3{width:10px;height:7px;border-radius:52% 48% 60% 40%;transform:rotate(7deg);background-color:#e0ae37}
+.handCarryStone.c4{width:8px;height:7px;border-radius:60% 40% 43% 57%;transform:rotate(-4deg);background-color:#c99528}
 
 /* Bottom controls mimic the approved sketch: line, New Game, status, arrows. */
 #controlArea{border-top:1px solid #222;padding-top:10px;margin-top:6px}
@@ -182,7 +189,7 @@ body{-webkit-text-size-adjust:100%}
     </div>
   </div>
 
-  <div id="hand" class="handEmpty"><svg viewBox="0 0 90 68" aria-hidden="true"><g id="handOpen"><path class="handShade" d="M20 55 C14 55 10 50 10 44 V23 C10 19 13 16 17 16 C21 16 24 19 24 23 V15 C24 10 27 7 31 7 C35 7 38 10 38 15 V12 C38 8 41 5 45 5 C49 5 52 8 52 12 V15 C52 10 55 7 59 7 C63 7 66 10 66 15 V21 C66 17 69 14 73 14 C77 14 80 17 80 21 V39 C80 48 73 55 64 55 Z"></path><path class="handOutline" d="M20 55 C14 55 10 50 10 44 V23 C10 19 13 16 17 16 C21 16 24 19 24 23 V15 C24 10 27 7 31 7 C35 7 38 10 38 15 V12 C38 8 41 5 45 5 C49 5 52 8 52 12 V15 C52 10 55 7 59 7 C63 7 66 10 66 15 V21 C66 17 69 14 73 14 C77 14 80 17 80 21 V39 C80 48 73 55 64 55 Z"></path></g><g id="handClosed"><path class="handShade" d="M21 44 C21 34 28 27 39 24 L53 20 C61 18 69 21 74 27 C78 31 79 37 77 43 C74 51 66 56 57 57 L40 58 C29 58 22 53 21 44 Z"></path><path class="handOutline" d="M21 44 C21 34 28 27 39 24 L53 20 C61 18 69 21 74 27 C78 31 79 37 77 43 C74 51 66 56 57 57 L40 58 C29 58 22 53 21 44 Z"></path><path class="handOutline" d="M31 34 C36 31 42 29 48 28"></path><path class="handOutline" d="M29 41 C36 38 44 36 52 35"></path><path class="handOutline" d="M31 48 C39 45 48 43 57 42"></path><path class="handOutline" d="M58 26 C64 27 69 30 72 35"></path><circle id="dropPebble" class="carryPebble" cx="70" cy="49" r="4"></circle></g></svg></div>
+  <div id="hand" class="handEmpty"><div id="handCarry" aria-hidden="true"></div><svg viewBox="0 0 90 68" aria-hidden="true"><g id="handOpen"><path class="handShade" d="M20 55 C14 55 10 50 10 44 V23 C10 19 13 16 17 16 C21 16 24 19 24 23 V15 C24 10 27 7 31 7 C35 7 38 10 38 15 V12 C38 8 41 5 45 5 C49 5 52 8 52 12 V15 C52 10 55 7 59 7 C63 7 66 10 66 15 V21 C66 17 69 14 73 14 C77 14 80 17 80 21 V39 C80 48 73 55 64 55 Z"></path><path class="handOutline" d="M20 55 C14 55 10 50 10 44 V23 C10 19 13 16 17 16 C21 16 24 19 24 23 V15 C24 10 27 7 31 7 C35 7 38 10 38 15 V12 C38 8 41 5 45 5 C49 5 52 8 52 12 V15 C52 10 55 7 59 7 C63 7 66 10 66 15 V21 C66 17 69 14 73 14 C77 14 80 17 80 21 V39 C80 48 73 55 64 55 Z"></path></g><g id="handClosed"><path class="handShade" d="M21 44 C21 34 28 27 39 24 L53 20 C61 18 69 21 74 27 C78 31 79 37 77 43 C74 51 66 56 57 57 L40 58 C29 58 22 53 21 44 Z"></path><path class="handOutline" d="M21 44 C21 34 28 27 39 24 L53 20 C61 18 69 21 74 27 C78 31 79 37 77 43 C74 51 66 56 57 57 L40 58 C29 58 22 53 21 44 Z"></path><path class="handOutline" d="M31 34 C36 31 42 29 48 28"></path><path class="handOutline" d="M29 41 C36 38 44 36 52 35"></path><path class="handOutline" d="M31 48 C39 45 48 43 57 42"></path><path class="handOutline" d="M58 26 C64 27 69 30 72 35"></path><circle id="dropPebble" class="carryPebble" cx="70" cy="49" r="4"></circle></g></svg></div>
 </div>
 <script>
 "use strict";
@@ -210,7 +217,8 @@ function getPickupDelay(){return 500}
 function getCaptureDelay(){return 1200}
 function showHand(){var h=document.getElementById("hand");if(h.style.display!=="block")h.style.display="block"}
 function hideHand(){var h=document.getElementById("hand");if(h)h.style.display="none"}
-function updateHand(){var h=document.getElementById("hand");if(!h||h.style.display==="none")return;var cls=(handHolding>0?"handHolding":"handEmpty");if(handMode==="pickup")cls+=" handPicking";else if(handMode==="drop")cls+=" handDropping";h.className=cls}
+function renderHandCarry(){var box=document.getElementById("handCarry"),html="",i,c;if(!box)return;for(i=0;i<handHolding;i++){c=(i%4)+1;html+='<span class="handCarryStone c'+c+'"></span>'}box.innerHTML=html}
+function updateHand(){var h=document.getElementById("hand");if(!h)return;renderHandCarry();if(h.style.display==="none")return;var cls=(handHolding>0?"handHolding":"handEmpty");if(handMode==="pickup")cls+=" handPicking";else if(handMode==="drop")cls+=" handDropping";h.className=cls}
 function getPitHandPosition(pit){var cell=document.getElementById("pit"+pit),page=document.getElementById("page");var r=cell.getBoundingClientRect(),pr=page.getBoundingClientRect();return{left:(r.left-pr.left)+(r.width/2)-41,top:(r.top-pr.top)+(r.height/2)-31}}
 function placeHand(left,top){var h=document.getElementById("hand");h.style.left=left+"px";h.style.top=top+"px";updateHand()}
 function moveHandToPit(pit,callback){var h=document.getElementById("hand");var pos=getPitHandPosition(pit);var duration=500;showHand();updateHand();if(h.style.display==="block"&&h.style.left!==""){h.style.left=pos.left+"px";h.style.top=pos.top+"px";setTimeout(callback,duration)}else{placeHand(pos.left-80,pos.top+10);showHand();setTimeout(function(){h.style.left=pos.left+"px";h.style.top=pos.top+"px";setTimeout(callback,duration)},30)}}
